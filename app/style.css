@@ -1,7 +1,65 @@
-body { font-family: Arial, sans-serif; margin: 24px; color: #222; }
-header { display: flex; justify-content: space-between; align-items: baseline; }
-.controls { display: flex; gap: 16px; margin: 12px 0; align-items: center; }
-.import input { font-size: 12px; }
-table { border-collapse: collapse; width: 100%; }
-th, td { border-bottom: 1px solid #ddd; padding: 6px 8px; text-align: left; vertical-align: top; white-space: pre-line; }
-th { background: #f2f2f2; }
+/* Leonida Ledger identity: deep teal ink on warm sand, ruled ledger rows, grade chips. System fonts only. */
+:root {
+  --ink: #123332;
+  --teal: #0f5e5c;
+  --teal-dark: #0a3f3d;
+  --sand: #f6efdd;
+  --paper: #fffdf6;
+  --line: #d8cdb2;
+  --alarm: #b3372a;
+  --gold: #a97b12;
+  --silver: #5f6d72;
+  --bronze: #96603a;
+  --plat: #33658a;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+body { margin: 0; font-family: Georgia, "Times New Roman", serif; background: var(--sand); color: var(--ink); }
+#ledger-header { display: flex; justify-content: space-between; gap: 24px; padding: 18px 26px 10px; background: var(--teal-dark); color: #fdf6df; }
+#app-title { margin: 0; font-size: 34px; letter-spacing: 1px; }
+#app-subtitle { margin: 4px 0 8px; font-size: 15px; max-width: 560px; }
+#progress-panel { min-width: 300px; text-align: right; }
+#progress-summary { margin: 2px 0 6px; font-size: 21px; font-weight: bold; }
+#progress-bar { height: 14px; background: #e7dcbd; border: 1px solid #fdf6df; }
+#progress-fill { height: 100%; width: 0%; background: #e9b949; }
+#grade-counts { margin: 6px 0 0; font-size: 13px; }
+#view-tabs { display: flex; gap: 8px; padding: 10px 26px 0; }
+#view-tabs button { font: inherit; font-size: 15px; padding: 7px 16px; border: 2px solid var(--teal-dark); background: var(--paper); color: var(--teal-dark); cursor: pointer; }
+#view-tabs button.active-view { background: var(--teal); color: #fff; }
+#controls-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; padding: 10px 26px; font-size: 14px; }
+#controls-bar select, #controls-bar input[type="search"] { font: inherit; font-size: 14px; padding: 3px 6px; }
+#export-progress { font: inherit; font-size: 14px; padding: 5px 12px; background: var(--teal-dark); color: #fff; border: 0; cursor: pointer; }
+#import-label { font-size: 13px; }
+#ledger-main { display: grid; grid-template-columns: minmax(0, 1.55fr) minmax(300px, 1fr); gap: 18px; padding: 4px 26px 18px; align-items: start; }
+#result-count { margin: 4px 0 8px; font-size: 14px; font-style: italic; }
+.trophy-row { display: flex; gap: 10px; align-items: flex-start; width: 100%; text-align: left; background: var(--paper); border: 1px solid var(--line); border-bottom: 3px double var(--line); padding: 8px 10px; margin: 0 0 6px; font: inherit; cursor: pointer; }
+.trophy-row.selected-row { outline: 3px solid var(--teal); }
+.trophy-row input { margin-top: 4px; width: 18px; height: 18px; }
+.row-text { flex: 1; }
+.trophy-name { display: block; font-size: 16.5px; font-weight: bold; }
+.trophy-desc { display: block; font-size: 13.5px; color: #44514c; margin-top: 1px; }
+.masked-name { letter-spacing: 2px; color: var(--alarm); }
+.grade-chip { font-size: 11.5px; font-weight: bold; text-transform: uppercase; padding: 3px 7px; color: #fff; white-space: nowrap; }
+.grade-platinum { background: var(--plat); }
+.grade-gold { background: var(--gold); }
+.grade-silver { background: var(--silver); }
+.grade-bronze { background: var(--bronze); }
+.kind-tag { font-size: 11.5px; text-transform: uppercase; color: var(--teal-dark); border: 1px solid var(--teal); padding: 2px 6px; white-space: nowrap; }
+.missable-flag { font-size: 11.5px; font-weight: bold; color: #fff; background: var(--alarm); padding: 3px 7px; white-space: nowrap; }
+.count-tag { font-size: 12px; font-weight: bold; color: var(--teal-dark); white-space: nowrap; }
+#guide-panel { background: var(--paper); border: 2px solid var(--teal-dark); padding: 10px 13px; position: sticky; top: 10px; }
+#guide-panel h2 { margin: 0 0 3px; font-size: 20px; }
+#guide-panel h3 { margin: 8px 0 3px; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--teal-dark); }
+#guide-panel p, #guide-panel li { font-size: 13.5px; line-height: 1.35; margin: 4px 0; }
+#guide-panel ol { margin: 4px 0; padding-left: 20px; }
+.guide-desc { font-style: italic; color: #44514c; }
+.missable-warning { background: #fbe9e5; border-left: 5px solid var(--alarm); padding: 7px 9px; font-weight: bold; }
+.source-citation { font-size: 13px; background: #eef3e6; border-left: 5px solid var(--teal); padding: 7px 9px; }
+#roadmap-pane, #missables-pane { padding: 6px 26px 20px; }
+#roadmap-pane h2, #missables-pane h2 { margin: 8px 0 4px; font-size: 24px; color: var(--teal-dark); }
+.roadmap-stage { background: var(--paper); border: 1px solid var(--line); padding: 10px 14px; margin: 0 0 10px; }
+.roadmap-stage h3 { margin: 0 0 6px; font-size: 17px; }
+.roadmap-stage li, .missable-card p { font-size: 14.5px; line-height: 1.45; }
+.missable-card { background: var(--paper); border-left: 6px solid var(--alarm); padding: 9px 14px; margin: 0 0 9px; }
+.missable-card h3 { margin: 0 0 3px; font-size: 16.5px; }
+#ledger-footer { padding: 10px 26px 18px; font-size: 13px; color: #44514c; }

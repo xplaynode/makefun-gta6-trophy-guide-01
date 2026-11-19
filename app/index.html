@@ -3,23 +3,81 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GTA VI trophy checklist</title>
+<title>Leonida Ledger — GTA VI Platinum Trophy Guide and Tracker</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header>
-  <h1>GTA VI trophy checklist</h1>
-  <p id="progress">0 of 55 earned</p>
+<header id="ledger-header">
+  <div class="masthead">
+    <h1 id="app-title">Leonida Ledger</h1>
+    <p id="app-subtitle">The GTA VI platinum route: all 55 PlayStation 5 trophies, tracked, roadmapped and cited.</p>
+  </div>
+  <div id="progress-panel">
+    <p id="progress-summary">0 of 55 earned — 0%</p>
+    <div id="progress-bar"><div id="progress-fill"></div></div>
+    <p id="grade-counts">Platinum 0/1 · Gold 0/2 · Silver 0/6 · Bronze 0/46</p>
+  </div>
 </header>
-<div class="controls">
-  <label>Grade <select id="grade"><option value="all">All</option><option value="platinum">Platinum</option><option value="gold">Gold</option><option value="silver">Silver</option><option value="bronze">Bronze</option></select></label>
-  <button id="export" type="button">Export progress</button>
-  <label class="import">Import progress <input id="import" type="file" accept="application/json"></label>
-</div>
-<table>
-  <thead><tr><th>Earned</th><th>Trophy</th><th>Grade</th><th>How to get it</th></tr></thead>
-  <tbody id="rows"></tbody>
-</table>
-<script type="module" src="app.js"></script>
+<nav id="view-tabs">
+  <button id="tab-checklist" type="button" data-view="checklist">Checklist</button>
+  <button id="tab-roadmap" type="button" data-view="roadmap">Platinum roadmap</button>
+  <button id="tab-missables" type="button" data-view="missables">Missables</button>
+</nav>
+<section id="controls-bar">
+  <label>Kind
+    <select id="filter-kind">
+      <option value="all">All kinds</option>
+      <option value="story">Story</option>
+      <option value="missable">Missable</option>
+      <option value="collectibles">Collectibles</option>
+      <option value="activities">Activities</option>
+      <option value="online">Online</option>
+    </select>
+  </label>
+  <label>Grade
+    <select id="filter-grade">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label>State
+    <select id="filter-state">
+      <option value="all">Earned and unearned</option>
+      <option value="earned">Earned only</option>
+      <option value="unearned">Unearned only</option>
+    </select>
+  </label>
+  <label>Search <input id="filter-search" type="search" placeholder="Trophy name or word"></label>
+  <label id="spoiler-toggle-label"><input id="spoiler-toggle" type="checkbox"> Spoiler shield: hide story trophies until earned</label>
+  <button id="export-progress" type="button">Export progress</button>
+  <label id="import-label">Import progress <input id="import-progress" type="file" accept="application/json"></label>
+</section>
+<main id="ledger-main">
+  <section id="checklist-pane">
+    <p id="result-count"></p>
+    <div id="trophy-rows"></div>
+  </section>
+  <aside id="guide-panel">
+    <p id="guide-placeholder">Select any trophy to read its full guide: what to do, where and how, when it can be missed, and the source it cites.</p>
+    <div id="guide-content"></div>
+  </aside>
+</main>
+<section id="roadmap-pane" hidden>
+  <h2 id="roadmap-title">Roadmap to the platinum</h2>
+  <p id="roadmap-intro">Built only from the official descriptions: story chapters and named missions first, in chapter order; then collectibles with their PlayStation counts; then activities and challenges; then money, exploration and the 100% cleanup. Every missable-watch trophy is flagged where it sits in the order.</p>
+  <div id="roadmap-stages"></div>
+</section>
+<section id="missables-pane" hidden>
+  <h2 id="missables-title">Missables — do not walk past these</h2>
+  <p id="missables-intro">Each flag below is justified from the trophy's own official description: the description points at one named moment, one choice, or one second attempt, so the safe play is to earn it when that moment arrives instead of hoping for a later chance.</p>
+  <div id="missable-rows"></div>
+</section>
+<footer id="ledger-footer">
+  <p id="source-note">Guide text is original to this entry. Every guide names its source beside it: the official PlayStation trophy list as listed by PSNProfiles and Exophase, and the roadmap references named in each panel. Trophy names, descriptions and grades are shown exactly as PlayStation publishes them.</p>
+</footer>
+<script type="module" src="src/main.js"></script>
 </body>
 </html>

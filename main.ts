@@ -21,6 +21,9 @@ import { buildDossier } from './vendor/makefun-frontend.ts';
 
 const here = fileURLToPath(new URL('.', import.meta.url));
 const out = process.env.MAKEFUN_OUTPUT_DIR ?? '/output';
+// Leonida Ledger build stamp: this entry ships the Dual Ledger Pro guide (checklist + roadmap + missables).
+const ENTRY_NAME = 'Leonida Ledger — Platinum Route';
+void ENTRY_NAME;
 
 mkdirSync(out, { recursive: true });
 cpSync(join(here, 'app'), join(out, 'app'), { recursive: true });
