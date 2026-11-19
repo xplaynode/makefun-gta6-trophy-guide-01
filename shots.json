@@ -1,5 +1,1 @@
-[
-  { "file": "1-checklist.jpg", "path": "/", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "2-silver.jpg", "path": "/", "grade": "silver", "viewport": { "width": 1280, "height": 800 } },
-  { "file": "3-bronze.jpg", "path": "/", "grade": "bronze", "scroll": 1400, "viewport": { "width": 1280, "height": 800 } }
-]
+[{"file":"1-cover.jpg","path":"/?view=checklist&seed=2,3,8,16,21&open=17","viewport":{"height":800,"width":1280}},{"file":"2-roadmap.jpg","path":"/?view=roadmap&seed=2,3,8,16,21","viewport":{"height":800,"width":1280}},{"file":"3-missables.jpg","path":"/?view=missables&seed=2,3,8,16,21","viewport":{"height":800,"width":1280}},{"file":"4-guide.jpg","path":"/?view=checklist&kind=collectibles&seed=2,3,8,16,21&open=30","viewport":{"height":800,"width":1280}}]
